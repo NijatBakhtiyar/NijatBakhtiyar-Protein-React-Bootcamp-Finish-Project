@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useMutation, useQueryClient } from "react-query";
+import {  useNavigate } from "react-router-dom";
 
 import { useUser } from "../context/UserContext";
 import { API, Service } from "../data/service";
@@ -19,7 +20,8 @@ function GiveOfferModal({ product }) {
   const [show, setShow] = useState(false);
   const [offerRadio, setOfferRadio] = useState(offers[0]);
   const [offerInput, setOfferInput] = useState("");
-
+  const { user } = useUser();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const giveOfferMutation = useMutation(Service.giveOffer, {
@@ -28,8 +30,6 @@ function GiveOfferModal({ product }) {
       handleClose();
     },
   });
-
-  const { user } = useUser();
 
   const handleClose = () => {
     setShow(false);
@@ -41,12 +41,15 @@ function GiveOfferModal({ product }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    giveOfferMutation.mutate({
-      productId: product.id,
-      offerPrice: offerInput || getOfferWithPercent(offerRadio, product.price),
-      userId: user.id,
-    });
+    if (user) {
+      giveOfferMutation.mutate({
+        productId: product.id,
+        offerPrice: offerInput || getOfferWithPercent(offerRadio, product.price),
+        userId: user.id,
+      });
+    } else {
+      navigate('/login')
+    }
   };
 
   return (
