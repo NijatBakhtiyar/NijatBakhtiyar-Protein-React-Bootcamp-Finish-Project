@@ -32,13 +32,7 @@ function ProductDetail() {
       queryClient.invalidateQueries(["getProduct", id]);
     },
   });
-
-  // const deleteOffer = (id) => {
-  //   useQuery(["deleteOffer", id], () => {
-  //     Service.deleteOffer(id)
-  //   })
-  // }
-
+  
   function boughtToast() {
     toast.success("Satın Alındı")
   }
