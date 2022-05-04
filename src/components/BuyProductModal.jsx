@@ -20,6 +20,7 @@ function BuyProductModal({ product, boughtToast }) {
   const buyProduct = () => {
     productBuyMutation.mutate(product.id);
     boughtToast();
+    setShow(false)
   };
 
   return (
