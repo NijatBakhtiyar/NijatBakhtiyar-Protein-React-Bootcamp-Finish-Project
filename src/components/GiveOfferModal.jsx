@@ -8,6 +8,7 @@ import { useUser } from "../context/UserContext";
 import { API, Service } from "../data/service";
 import NoImage from "../images/Png/NoImage.jpg";
 import LoadingIcon from "../images/Svg/LoadingIcon";
+import { formatPrice } from "../utils/formatPrice";
 import styles from "./GiveOfferModal.module.scss";
 
 const offers = [20, 30, 40];
@@ -73,7 +74,7 @@ function GiveOfferModal({ product }) {
               <p>{product.status}</p>
             </div>
             <div className={styles.right}>
-              <p>{product.price} TL</p>
+              <p>{formatPrice(product.price)} TL</p>
             </div>
           </div>
           <form onSubmit={handleSubmit}>

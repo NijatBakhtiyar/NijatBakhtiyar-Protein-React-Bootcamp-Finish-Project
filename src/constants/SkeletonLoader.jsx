@@ -3,15 +3,15 @@ import "../general.scss";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 
-function SkeletonLoader() {
+function SkeletonLoader({ count, style }) {
   return (
     <div className="skeleton-loader">
       {/* <h2 className="section-title">
         <Skeleton height={30} width={300} />
       </h2> */}
 
-      <ul className="list">
-        {Array(4)
+      <ul className={`list ${style}`}>
+        {Array(count)
           .fill()
           .map((item, index) => (
             <li className="card" key={index}>

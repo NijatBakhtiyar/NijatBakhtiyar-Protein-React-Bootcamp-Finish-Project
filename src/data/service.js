@@ -95,10 +95,9 @@ export const Service = {
   addProduct: async ({ image, ...form }) => {
     const token = localStorage.getItem("token");
     const formdata = new FormData();
-    form.isOfferable = true;
-    
+
     formdata.append("files.image", image);
-    formdata.append("data", JSON.stringify(form));
+    formdata.append("data", JSON.stringify({ ...form, isOfferable: true }));
 
     const res = await axios.post(`${API}/products`, formdata, {
       headers: {

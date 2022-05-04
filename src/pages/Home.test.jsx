@@ -10,7 +10,7 @@ it("user should see products in Home page"  , async () => {
   const productBrand = await screen.findByText("Milla");
   expect(productBrand).toBeInTheDocument();
 
-  const productPrice = await screen.findByText("45 TL");
+  const productPrice = await screen.findByText("45,00 TL");
   expect(productPrice).toBeInTheDocument();
 
   const productColor = await screen.findByText("Lacivert");

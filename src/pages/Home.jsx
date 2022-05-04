@@ -9,6 +9,7 @@ import SkeletonLoader from "../constants/SkeletonLoader";
 import { API, Service } from "../data/service";
 import HomeBanner from "../images/Png/HomeBanner.png";
 import NoImage from "../images/Png/NoImage.jpg";
+import { formatPrice } from "../utils/formatPrice";
 import styles from "./Home.module.scss";
 
 function Home() {
@@ -37,7 +38,7 @@ function Home() {
 
         <AsyncList
           query={productsQuery}
-          renderLoading={() => <SkeletonLoader />}
+          renderLoading={() => <SkeletonLoader count={4} />}
           renderError={() => <p>Something went wrong!</p>}
           renderEmpty={() => <p>No products found!</p>}
           renderList={(products) => (
@@ -66,7 +67,7 @@ function Home() {
                     </p>
                     <span
                       className={styles.price}
-                    >{`${product.price.toLocaleString('en-US', { maximumFractionDigits: 2 }).replace('.', ',')} TL`}</span>
+                    >{`${formatPrice(product.price)} TL`}</span>
                   </Link>
                 );
               })}
