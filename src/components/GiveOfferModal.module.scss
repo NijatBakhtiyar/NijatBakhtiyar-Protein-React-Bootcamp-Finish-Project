@@ -1,0 +1,242 @@
+.offer {
+  color: #4b9ce2;
+  background: #f0f8ff;
+  box-shadow: unset;
+
+  &:hover,
+  &:focus {
+    box-shadow: unset !important;
+    background: #f0f8ff;
+    color: #4b9ce2;
+    border: none;
+  }
+}
+:global .modal-title {
+  color: #525252;
+  font-size: 25px;
+  font-weight: 700;
+}
+:global .modal-content {
+  border-radius: 10px;
+  border: none;
+
+  .modal-header {
+    border: none;
+    padding-bottom: 4px;
+
+    .btn-close {
+      opacity: 0.7;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+:global .modal-backdrop {
+  background: #4b9ce2;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #525252;
+  background: #f0f8ff;
+  border-radius: 10px;
+  padding: 6px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      max-width: 130px;
+      font-size: 13px;
+      margin: 0;
+    }
+  }
+
+  .right {
+    p {
+      color: #525252;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+}
+
+form {
+  margin-top: 20px;
+  color: #525252;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .formGroup {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    position: relative;
+    height: 45px;
+
+    input {
+      margin-left: 10px;
+    }
+
+    label {
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      color: #525252;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.active {
+      border: 1px solid #4b9ce2;
+      background: #f0f8ff;
+
+      label {
+        color: #4b9ce2;
+      }
+    }
+  }
+
+  .submitBtn {
+    display: flex;
+    justify-content: center;
+
+    button {
+      height: 45px;
+      background: #4b9ce2;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 8px;
+      box-shadow: none !important;
+      border: none;
+      outline: none;
+      width: 70%;
+
+      &:hover,
+      &:focus {
+        box-shadow: none;
+        background: #4b9ce2;
+      }
+    }
+  }
+
+  .price {
+    position: relative;
+    height: 45px;
+    border: none;
+    background: #f4f4f4;
+
+    input {
+      background: unset;
+      margin: 0;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      color: #3e3e3e;
+      padding-left: 10px;
+
+      &:focus {
+        border: 1px solid #4b9ce2;
+        background: #f0f8ff;
+        color: #4b9ce2;
+      }
+    }
+
+    span {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #99a0a7;
+    }
+
+    &.active {
+      span {
+        display: none;
+      }
+    }
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="radio"] {
+    appearance: none;
+    border: 1px solid #d3d3d3;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    content: none;
+    outline: none;
+    margin: 0;
+  }
+
+  input[type="radio"]:checked {
+    appearance: none;
+    outline: none;
+    padding: 0;
+    content: none;
+    border: none;
+  }
+
+  input[type="radio"]:checked::before {
+    position: absolute;
+    color: #fff !important;
+    content: "\00A0\2713\00A0" !important;
+    border: 1px solid #d3d3d3;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: 12px;
+    background: #4b9ce2;
+    padding: 0px 1px 1px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  :global .modal-header {
+    .modal-title {
+      font-size: 18px !important;
+    }
+
+    .btn-close {
+      width: 11px !important;
+      height: 11px !important;
+      font-size: 12px;
+    }
+  }
+
+  form {
+    padding: 0 !important;
+  }
+
+  .right p {
+    font-size: 15px !important;
+  }
+
+  .submitBtn button {
+    width: 100% !important;
+  }
+}

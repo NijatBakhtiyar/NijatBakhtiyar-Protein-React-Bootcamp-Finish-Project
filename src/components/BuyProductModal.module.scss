@@ -1,0 +1,61 @@
+.buy {
+  color: #fff !important;
+  background: #4b9ce2 !important;
+
+  &:hover,
+  &:focus {
+    box-shadow: unset !important;
+    background: #4b9ce2;
+    color: #fff;
+    border: none;
+  }
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 7px;
+
+  h1 {
+    font-size: 25px;
+    color: #525252;
+    margin: 0;
+  }
+
+  p {
+    font-size: 15px;
+    color: #555555;
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .btns {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    button {
+      border: none;
+      box-shadow: none;
+      font-size: 18px;
+      font-weight: 700;
+      width: 100%;
+      border-radius: 8px;
+      padding: 10px 0;
+
+      &:hover,
+      &:focus {
+        box-shadow: unset !important;
+        border: none;
+      }
+
+      &.reject {
+        color: #4b9ce2;
+        background: #f0f8ff;
+      }
+    }
+  }
+}

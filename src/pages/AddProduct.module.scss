@@ -1,0 +1,364 @@
+.addProduct {
+  padding: 30px;
+  background: #fff;
+  margin: 20px 0;
+  border-radius: 8px;
+  color: #525252;
+
+  h1 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+
+  .errorMessage {
+    height: 20px;
+    color: #f77474;
+    line-height: 20px;
+  }
+
+  form {
+    margin: 0;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 46px;
+    margin-bottom: 100px;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      .formGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: max-content;
+
+        label {
+          font-size: 15px;
+        }
+
+        input,
+        // select,
+        textarea {
+          border: none;
+          border-radius: 8px;
+          background: #f4f4f4;
+          padding: 12px 15px;
+          color: #3e3e3e;
+          font-size: 16px;
+
+          &::placeholder {
+            color: #99a0a7;
+          }
+        }
+
+        textarea {
+          resize: none;
+
+          &::-webkit-scrollbar {
+            width: 5px;
+            border-radius: 20px;
+          }
+
+          &::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: darkgrey;
+            border-radius: 20px;
+          }
+        }
+      }
+
+      .formSelect {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+
+      .price {
+        position: relative;
+        width: 40%;
+
+        .currency {
+          position: absolute;
+          right: 15px;
+          top: 52%;
+          font-size: 16px;
+          transform: translateY(-50%);
+        }
+
+        input {
+          border: 1px solid #f4f4f4;
+        }
+
+        &.error {
+          input {
+            border-color: #f77474;
+            background: #fff2f2;
+
+            &::placeholder {
+              color: #f77474;
+            }
+          }
+        }
+      }
+
+      .checkPrice {
+        width: 40%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16px;
+        min-width: max-content;
+
+        label {
+          color: #3e3e3e;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .line {
+      width: 1px;
+      background: #f2f2f2;
+    }
+
+    .right {
+      flex: 0.8;
+
+      :global progress {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .progressBar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        z-index: 2;
+        transform: translate(-50%, -50%);
+
+        p {
+          color: #525252;
+          margin: 0;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .submitBnt {
+    display: flex;
+    justify-content: end;
+
+    button {
+      font-size: 18px;
+      background: #4b9ce2;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 8px;
+      color: #fff;
+      height: 40px;
+      padding: 0 120px;
+      border: none;
+    }
+  }
+
+  .dropBox {
+    border: 1px dashed #b1b1b1;
+    border-radius: 10px;
+    margin-top: 25px;
+    position: relative;
+
+    .dropBoxText {
+      display: flex;
+      padding: 20px 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      p {
+        color: #525252;
+        font-size: 14px;
+        font-weight: 600;
+        max-width: 180px;
+        text-align: center;
+
+        &:nth-child(3) {
+          color: #b1b1b1;
+          background: #f4f4f4;
+          border-radius: 15px;
+          padding: 5px 20px;
+          font-size: 15px;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        color: #b1b1b1;
+      }
+    }
+
+    :global .dzu-dropzone {
+      background: unset;
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+      .dzu-inputLabel {
+        color: transparent;
+      }
+
+      .dzu-inputLabelWithFiles {
+        display: none;
+      }
+
+      .dzu-submitButtonContainer {
+        display: none;
+      }
+
+      .dzu-previewContainer {
+        background: #fff;
+        height: 100%;
+        padding: 0;
+        display: block;
+        position: relative;
+        margin-top: 10px;
+        border: none;
+
+        img {
+          max-height: unset;
+          max-width: unset;
+          max-height: 140px;
+          max-width: 140px;
+          display: none;
+        }
+      }
+
+      .dzu-previewButton {
+        position: absolute;
+        top: -5px;
+        left: 120px;
+        z-index: 2;
+        background-image: unset !important;
+        background: #3e3e3e;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 2px;
+        display: none;
+
+        &::after {
+          content: "x";
+          color: #fff;
+        }
+      }
+    }
+
+    &.active {
+      border: none;
+      :global .dzu-previewContainer {
+        background: #fff;
+        height: 100%;
+        padding: 0;
+        display: block;
+        position: relative;
+        margin-top: 10px;
+        border: none;
+
+        img {
+          display: block;
+        }
+
+        progress {
+          display: none;
+        }
+      }
+
+      :global .dzu-dropzone {
+        .dzu-previewButton {
+          display: flex;
+        }
+      }
+
+      .progressBar {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .addProduct {
+    .row {
+      flex-direction: column;
+    }
+
+    .line {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .addProduct {
+    form {
+      margin: 0 !important;
+      h1 {
+        margin-bottom: 20px;
+        font-size: 20px;
+      }
+
+      textarea {
+        height: 90px;
+      }
+    }
+
+    .row {
+      margin-bottom: 25px;
+      gap: 26px;
+    }
+
+    .left {
+      gap: unset !important;
+
+      .formGroup {
+        margin-bottom: 15px !important;
+
+        p {
+          margin: 0 !important;
+        }
+      }
+
+      .formSelect {
+        grid-template-columns: repeat(1, 1fr) !important;
+        gap: unset !important;
+      }
+    }
+
+    .submitBnt button {
+      width: 100%;
+    }
+  }
+}

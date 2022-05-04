@@ -1,0 +1,194 @@
+:global .Toastify__toast {
+  background: #f1fff0;
+  color: #46af32;
+
+  .Toastify__close-button {
+    display: none;
+  }
+
+  svg {
+    fill: #46af32;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  :global .Toastify__toast-container {
+    top: 70px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px !important;
+  }
+}
+
+.productDetail {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 16px;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  // min-height: 700px;
+
+  .left,
+  .right {
+    flex: 1;
+  }
+
+  .left {
+    .image {
+      height: 450px;
+      background-image: url("../images/Png/Image\ 5@2x.png");
+      background-size: contain;
+      border-radius: 8px;
+      background-position: center center;
+      background-color: black;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .right {
+    padding: 16px 0;
+    color: #525252;
+
+    .title {
+      font-size: 34px;
+      margin-bottom: 25px;
+      color: #555555;
+      min-width: max-content;
+    }
+
+    .detail {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      p {
+        font-size: 15px;
+        display: flex;
+        margin-bottom: 10px;
+        b {
+          width: 150px;
+        }
+      }
+
+      .price {
+        margin: 10px 0 30px;
+        font-weight: 700;
+        font-size: 25px;
+        display: flex;
+        justify-content: space-between;
+
+        .givenOffer {
+          background: #f2f2f2;
+          border-radius: 8px;
+          font-size: 12px;
+          color: #b1b1b1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 7px 13px;
+          gap: 5px;
+
+          span {
+            font-size: 15px;
+            font-weight: 700;
+            color: #525252;
+          }
+        }
+      }
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+
+      button {
+        border-radius: 8px;
+        padding: 10px 80px;
+        min-width: max-content;
+        font-size: 18px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      p {
+        color: #faad60;
+        background: #fff0e2;
+        padding: 11px 28px;
+        border-radius: 8px;
+        font-size: 18px;
+        margin: 0;
+        font-weight: 700;
+      }
+    }
+
+    .about {
+      p {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      span {
+        font-size: 15px;
+        color: #555555;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .productDetail {
+    flex-direction: column;
+    gap: 0px !important;
+
+    .left {
+      .image {
+        height: 350px;
+      }
+    }
+    .about {
+      max-width: 400px;
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  :global .Toastify__toast-container {
+    width: 100vw;
+  }
+  
+  .right {
+    .title {
+      font-size: 18px !important;
+      margin-bottom: 10px !important;
+    }
+
+    .detail {
+      flex-direction: column-reverse !important;
+      gap: 10px !important;
+
+      .price {
+        font-size: 20px;
+        margin: 0 !important;
+      }
+    }
+
+    .btns {
+      margin: 3px 0 13px !important;
+
+      button {
+        padding: 10px 30px !important;
+        font-size: 18px !important;
+      }
+
+      p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}

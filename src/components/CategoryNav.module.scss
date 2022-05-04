@@ -1,0 +1,43 @@
+.productNavs {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .categoryButton {
+    font-size: 18px;
+    color: #525252;
+    font-weight: 600;
+    border: none;
+    background: unset;
+    outline: none;
+    cursor: pointer;
+
+    &.active {
+      color: #4b9ce2;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        bottom: -16px;
+        left: 0;
+        background: #4b9ce2;
+        height: 2px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .productNavs {
+    gap: 27px !important;
+  }
+}
