@@ -1,13 +1,10 @@
-import "react-toastify/dist/ReactToastify.css";
-
 import { Formik } from "formik";
 import React from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 import { AuthSchema } from "../constants/AuthSchema";
-import { useUser } from "../context/UserContext";
 import { Service } from "../data/service";
 import LoadingIcon from "../images/Svg/LoadingIcon";
 import Auth from "./Auth";
@@ -15,18 +12,16 @@ import styles from "./Auth.module.scss";
 
 function Login() {
   const navigate = useNavigate();
-  const { refetch } = useUser();
+  const queryClient = useQueryClient();
   const loginMutation = useMutation(Service.login, {
     onSuccess: () => {
-      refetch();
+      queryClient.invalidateQueries(["me"]);
       navigate("/");
     },
     onError: () => {
       toast.error("Emailinizi veya şifreniz hatalı.")
     }
   });
-
-  console.log(loginMutation)
 
   return (
     <Auth>

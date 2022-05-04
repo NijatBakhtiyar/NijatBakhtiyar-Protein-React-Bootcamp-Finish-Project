@@ -1,5 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useMutation, useQueryClient } from "react-query";

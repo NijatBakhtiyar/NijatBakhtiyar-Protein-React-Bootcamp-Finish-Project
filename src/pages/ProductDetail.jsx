@@ -26,7 +26,7 @@ function ProductDetail() {
   const givenOffer = productQuery.data?.offers?.findLast(
     (offer) => offer.users_permissions_user == user?.id
   );
-  // console.log(pro);
+
   const deleteOfferMutation = useMutation(Service.deleteOffer, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getProduct", id]);

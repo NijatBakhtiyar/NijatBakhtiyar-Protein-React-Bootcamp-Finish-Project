@@ -8,7 +8,7 @@ import LoginIcon from "../images/Svg/LoginIcon";
 import styles from "./Header.module.scss";
 
 function Header() {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
 
   return (
     <div className={styles.header}>
@@ -19,13 +19,8 @@ function Header() {
           </Link>
           <div className={styles.right}>
 
-            {!user && (
-              <Link to="/login">
-                <LoginIcon />
-                <span>Giriş Yap</span>
-              </Link>
-            )}
-            {user && (
+
+            {isLoading ? "" : (user ?
               <>
                 <Link to="/add" className={styles.addIcon}>
                   <AddIcon />
@@ -35,8 +30,11 @@ function Header() {
                   <LoginIcon />
                   <span>Hesabım</span>
                 </Link>
-              </>
-            )}
+              </> : <Link to="/login">
+                <LoginIcon />
+                <span>Giriş Yap</span>
+              </Link>)
+            }
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import GetOffer from "../components/GetOffer";
@@ -12,8 +12,11 @@ import styles from "./Account.module.scss";
 
 function Account() {
   const offerQuery = useQuery(["getOffers"], Service.getOffers);
-  const { user, refetch } = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
   const receivedOffers = offerQuery.data?.filter(
     (offer) => offer.product?.users_permissions_user === user?.id
   );
@@ -36,7 +39,7 @@ function Account() {
             onClick={() => {
               localStorage.removeItem("token");
               navigate("/");
-              refetch();
+              queryClient.invalidateQueries(["me"]);
             }}
           >
             Logout

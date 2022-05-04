@@ -127,15 +127,6 @@ export const Service = {
     });
     return res.data;
   },
-  deleteProduct: async () => {
-    const token = localStorage.getItem("token");
-    const res = await axios.delete(`${API}/products/190`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  },
 };
 
 export function useCategories() {
