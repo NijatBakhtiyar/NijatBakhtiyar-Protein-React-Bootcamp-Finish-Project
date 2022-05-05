@@ -9,6 +9,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/setupTest.jsx"],
   },
+  mode: "development",
   build: {
     minify: false,
   },
