@@ -19,5 +19,5 @@ ReactDOM.render(
   <AllProviders>
     <App />
   </AllProviders>,
-  document.getElementById("root")
+  document.getElementById("project")
 );
