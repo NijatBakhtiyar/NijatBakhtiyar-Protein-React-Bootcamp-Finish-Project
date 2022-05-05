@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 import CustomSelect from "../components/CustomSelect";
 import UserLayout from "../components/UserLayout";
 import { AddProductSchema } from "../constants/AddProductSchema";
-// import ImageUploader from "../constants/ImageUploader";
+import ImageUploader from "../constants/ImageUploader";
 import inputStyle from "../constants/SwitchCheckBox.module.scss";
 import { Service, useCategories } from "../data/service";
 import LoadingIcon from "../images/Svg/LoadingIcon";
-import UploadIcon from "../images/Svg/UploadIcon";
 import styles from "./AddProduct.module.scss";
 
 function AddProduct() {
@@ -25,11 +24,7 @@ function AddProduct() {
   const brandQuery = useQuery(["getBrands"], Service.getBrands);
   const colorQuery = useQuery(["getColors"], Service.getColors);
   const statusQuery = useQuery(["getStatus"], Service.getStatus);
-
-  const [uploadActive, setUploadActive] = useState(false);
-  const [showPercent, setShowPercent] = useState(false);
   const [isOfferable, setIsOfferable] = useState(false);
-  const [uploadPercent, setUploadPercent] = useState(0);
 
   let offerChange = (e) => {
     setIsOfferable(e.target.checked);
@@ -201,33 +196,12 @@ function AddProduct() {
                   <div className={styles.line}></div>
                   <div className={styles.right}>
                     <h1>Ürün Görseli</h1>
-                    <div
-                      className={
-                        uploadActive
-                          ? `${styles.dropBox} ${styles.active}`
-                          : styles.dropBox
-                      }
-                    >
-                      <div className={styles.dropBoxText}>
-                        <UploadIcon />
-                        <p>Sürükleyip bırakarak yükle veya</p>
-                        <p>Görsel Seçin</p>
-                        <span>PNG ve JPEG Dosya boyutu: max. 400kb</span>
-                      </div>
-                      {showPercent && (
-                        <div className={styles.progressBar}>
-                          <p>%{uploadPercent}</p>
-                          <p>Yükleniyor</p>
-                        </div>
-                      )}
-                      {/* <ImageUploader
-                        setUploadActive={setUploadActive}
-                        setUploadPercent={setUploadPercent}
-                        setShowPercent={setShowPercent}
+                    <div className={styles.dropBox}>
+                      <ImageUploader
                         onChange={(file) => {
-                          setFieldValue("image", file);
+                          setFieldValue("image", file)
                         }}
-                      /> */}
+                      />
                     </div>
                     <span className={styles.errorMessage}>
                       {!values.image &&
@@ -241,6 +215,8 @@ function AddProduct() {
                     {productFormMutation.isLoading ? <LoadingIcon /> : "Kaydet"}
                   </button>
                 </div>
+
+
               </form>
             );
           }}

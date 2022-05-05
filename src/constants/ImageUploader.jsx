@@ -1,48 +1,55 @@
-import "react-dropzone-uploader/dist/styles.css";
+import React, { useState } from 'react';
+import ImageUploading from "react-images-uploading";
 
-import React from "react";
-import Dropzone from "react-dropzone-uploader";
+import UploadIcon from "../images/Svg/UploadIcon";
+import styles from "../pages/AddProduct.module.scss";
 
-function ImageUploader({
-  setUploadActive,
-  setUploadPercent,
-  setShowPercent,
-  onChange,
-}) {
-  // specify upload params and url for your files
-  const getUploadParams = () => {
-    return { url: "https://httpbin.org/post" };
+function ImageUploader({ onChange }) {
+  const [images, setImages] = useState([]);
+
+
+  const handleChange = (imageList) => {
+    setImages(imageList);
+    onChange(imageList)
   };
 
-  // called every time a file's `status` changes
-  const handleChangeStatus = ({ file }, status) => {
-    setShowPercent(true);
-    setUploadPercent((p) => p + 10);
-
-    if (status === "headers_received") {
-      setUploadPercent(100);
-    }
-
-    if (status === "done") {
-      setUploadActive(true);
-      onChange(file);
-    }
-  };
-
-  // receives array of files that are done uploading when submit button is clicked
-  const handleSubmit = (files, allFiles) => {
-    allFiles.forEach((f) => f.remove());
-  };
 
   return (
-    <Dropzone
-      getUploadParams={getUploadParams}
-      onChangeStatus={handleChangeStatus}
-      onSubmit={handleSubmit}
-      accept="image/png, image/jpeg, image/jpg"
-      maxSizeBytes={400000}
-      maxFiles={1}
-    />
+    <ImageUploading
+      multiple
+      value={images}
+      onChange={handleChange}
+      maxNumber={69}
+      dataURLKey="data_url"
+    >
+      {({
+        imageList,
+        onImageUpload,
+        onImageRemoveAll,
+        onImageUpdate,
+        onImageRemove,
+        isDragging,
+        dragProps
+      }) => (
+        // write your building UI
+        <div className="upload__image-wrapper">
+          <button type="button" className={styles.addBtn} onClick={onImageUpload}>
+            <UploadIcon />
+            <p>Sürükleyip bırakarak yükle veya</p>
+            <p>Görsel Seçin</p>
+            <span>PNG ve JPEG Dosya boyutu: max. 400kb</span>
+          </button>
+          {imageList?.map((image, index) => (
+            <div key={index} className={styles.imageItem}>
+              <img src={image.data_url} alt="" width="110" height="120" />
+              <div className="image-item__btn-wrapper">
+                <button type="button" className={styles.removeImage} onClick={() => onImageRemove(index)}>x</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </ImageUploading>
   );
 }
 

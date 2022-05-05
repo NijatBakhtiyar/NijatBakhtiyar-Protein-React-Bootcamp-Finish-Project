@@ -55,7 +55,13 @@
       font-size: 34px;
       margin-bottom: 25px;
       color: #555555;
-      min-width: max-content;
+      min-width: fit-content;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
     .detail {

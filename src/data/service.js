@@ -96,7 +96,7 @@ export const Service = {
     const token = localStorage.getItem("token");
     const formdata = new FormData();
 
-    formdata.append("files.image", image);
+    formdata.append("files.image", image[0].file);
     formdata.append("data", JSON.stringify({ ...form, isOfferable: true }));
 
     const res = await axios.post(`${API}/products`, formdata, {
@@ -127,6 +127,25 @@ export const Service = {
     });
     return res.data;
   },
+  getGivenOffers: async () => {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API}/offers/?users_permissions_user=454`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  },
+  getReceivedOffers: async () => {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API}/products?users_permissions_user=454`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  },
+
 };
 
 export function useCategories() {

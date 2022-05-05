@@ -40,6 +40,10 @@
         font-size: 15px;
         margin: 0;
 
+        span {
+          min-width: fit-content;
+        }
+
         .brand {
           color: #4b9ce2;
           font-weight: bold;

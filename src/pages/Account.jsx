@@ -12,6 +12,8 @@ import styles from "./Account.module.scss";
 
 function Account() {
   const offerQuery = useQuery(["getOffers"], Service.getOffers);
+  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
+  // const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
   const { user } = useUser();
   const navigate = useNavigate();
 
@@ -24,6 +26,8 @@ function Account() {
     (offer) => offer.users_permissions_user?.id === user?.id
   );
 
+
+  console.log(givenOffersQuery);
   const [active, setActive] = useState("getoffer");
 
   return (
