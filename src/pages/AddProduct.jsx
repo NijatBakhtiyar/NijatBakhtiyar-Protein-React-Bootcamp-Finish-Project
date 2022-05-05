@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CustomSelect from "../components/CustomSelect";
 import UserLayout from "../components/UserLayout";
 import { AddProductSchema } from "../constants/AddProductSchema";
-import ImageUploader from "../constants/ImageUploader";
+// import ImageUploader from "../constants/ImageUploader";
 import inputStyle from "../constants/SwitchCheckBox.module.scss";
 import { Service, useCategories } from "../data/service";
 import LoadingIcon from "../images/Svg/LoadingIcon";
@@ -220,14 +220,14 @@ function AddProduct() {
                           <p>Yükleniyor</p>
                         </div>
                       )}
-                      <ImageUploader
+                      {/* <ImageUploader
                         setUploadActive={setUploadActive}
                         setUploadPercent={setUploadPercent}
                         setShowPercent={setShowPercent}
                         onChange={(file) => {
                           setFieldValue("image", file);
                         }}
-                      />
+                      /> */}
                     </div>
                     <span className={styles.errorMessage}>
                       {!values.image &&
