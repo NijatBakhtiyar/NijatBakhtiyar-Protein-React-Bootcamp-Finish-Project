@@ -11,22 +11,13 @@ import UserIcon from "../images/Svg/UserIcon";
 import styles from "./Account.module.scss";
 
 function Account() {
-
-  // const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
+  const [active, setActive] = useState("getoffer");
   const { user } = useUser();
   const navigate = useNavigate();
-
-  // const offerQuery = useQuery(["getOffers"], Service.getOffers);
   const queryClient = useQueryClient();
 
   const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
-
   const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
-
-
-  const [active, setActive] = useState("getoffer");
-
-  // console.log(receivedOffersQuery);
 
   return (
     <UserLayout>
@@ -36,7 +27,6 @@ function Account() {
             <UserIcon />
             <p>{user?.username}</p>
           </div>
-
           <button
             onClick={() => {
               localStorage.removeItem("token");

@@ -17,6 +17,7 @@ export const Service = {
     });
     return res.data;
   },
+
   register: async ({ email, password }) => {
     const res = await axios.post(`${API}/auth/local/register`, {
       username: email,
@@ -26,6 +27,7 @@ export const Service = {
     localStorage.setItem("token", res.data.jwt);
     return res.data;
   },
+
   login: async ({ email, password }) => {
     const res = await axios.post(`${API}/auth/local`, {
       username: email,
@@ -35,6 +37,7 @@ export const Service = {
     localStorage.setItem("token", res.data.jwt);
     return res.data;
   },
+
   getAllProducts: async ({ categoryName }) => {
     const res = await axios.get(
       categoryName
@@ -43,21 +46,23 @@ export const Service = {
     );
     return res.data;
   },
+
   getAllCategories: async () => {
     const res = await axios.get(`${API}/categories`);
     return res.data;
   },
+
   getProduct: async (id) => {
     const res = await axios.get(`${API}/products/${id}`);
     return res.data;
   },
+
   giveOffer: async ({ productId, offerPrice, userId }) => {
     const token = localStorage.getItem("token");
     const res = await axios.post(
       `${API}/offers`,
       {
         product: productId,
-        // isStatus: false,
         offerPrice,
         users_permissions_user: userId,
       },
@@ -69,6 +74,7 @@ export const Service = {
     );
     return res.data;
   },
+
   deleteOffer: async (id) => {
     const token = localStorage.getItem("token");
     await axios.delete(`${API}/offers/${id}`, {
@@ -77,6 +83,7 @@ export const Service = {
       },
     });
   },
+
   buyProduct: async (id) => {
     const token = localStorage.getItem("token");
     const res = await axios.put(
@@ -107,18 +114,22 @@ export const Service = {
     });
     return res.data;
   },
+
   getBrands: async () => {
     const res = await axios.get(`${API}/brands`);
     return res.data;
   },
+
   getColors: async () => {
     const res = await axios.get(`${API}/colors`);
     return res.data;
   },
+
   getStatus: async () => {
     const res = await axios.get(`${API}/using-statuses`);
     return res.data;
   },
+
   getOffers: async () => {
     const token = localStorage.getItem("token");
     const res = await axios.get(`${API}/offers`, {
@@ -128,6 +139,7 @@ export const Service = {
     });
     return res.data;
   },
+
   getGivenOffers: async () => {
     const token = localStorage.getItem("token");
     const res = await axios.get(`${API}/offers/?users_permissions_user=454`, {
@@ -137,6 +149,7 @@ export const Service = {
     });
     return res.data;
   },
+
   getReceivedOffers: async () => {
     const token = localStorage.getItem("token");
     const res = await axios.get(`${API}/products?users_permissions_user=454`, {
@@ -146,6 +159,7 @@ export const Service = {
     });
     return res.data;
   },
+
   updateOffers: async ({ id, offer }) => {
     const token = localStorage.getItem("token");
     const res = await axios.put(
@@ -161,15 +175,28 @@ export const Service = {
     );
     return res.data;
   },
-  deleteProduct: async () => {
-    const token = localStorage.getItem("token");
-    const res = await axios.delete(`${API}/products/762`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  },
+
+
+
+  // deleteProduct: async () => {
+  //   const token = localStorage.getItem("token");
+  //   const res = await axios.delete(`${API}/products/793`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   return res.data;
+  // },
+  // deleteOfferNew: async () => {
+  //   const token = localStorage.getItem("token");
+  //   await axios.delete(`${API}/offers/1713`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // },
+
+  
 
 };
 

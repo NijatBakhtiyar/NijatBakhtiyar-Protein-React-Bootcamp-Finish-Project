@@ -10,10 +10,10 @@ export const AddProductSchema = yup.object().shape({
     .required("Bu alan zorunlu")
     .max(500, "500 karakterden fazla olamaz"),
   price: yup
-    .number()
-    .required("0-9 Arasında Bir Rakam Girin")
+    .string()
+    .required("Bu alan zorunlu")
     .typeError("0-9 Arasında Bir Rakam Girin"),
   category: yup.number().required("Bu alan zorunlu"),
-  color: yup.string().required("Bu alan zorunlu"),
+  status: yup.string().required("Bu alan zorunlu"),
   image: yup.mixed().required("Bu alan zorunlu"),
 });

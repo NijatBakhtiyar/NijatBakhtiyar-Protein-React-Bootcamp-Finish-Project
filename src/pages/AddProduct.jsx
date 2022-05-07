@@ -52,6 +52,7 @@ function AddProduct() {
             touched,
             setFieldValue,
           }) => {
+            console.log(errors);
             return (
               <form onSubmit={handleSubmit}>
                 <div className={styles.row}>
@@ -171,7 +172,7 @@ function AddProduct() {
                       />
                       <span className={styles.currency}>TL</span>
                       <span className={styles.errorMessage}>
-                        {isOfferable && errors.price}
+                        {touched.price && errors.price}
                       </span>
                     </div>
 
@@ -192,6 +193,7 @@ function AddProduct() {
                         ></span>
                       </label>
                     </div>
+                    
                   </div>
                   <div className={styles.line}></div>
                   <div className={styles.right}>

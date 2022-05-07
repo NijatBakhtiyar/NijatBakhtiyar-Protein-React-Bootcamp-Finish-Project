@@ -18,68 +18,75 @@ function ReceivedOffers({ receivedOffersQuery }) {
     },
   });
 
+  console.log("aldiklarim", offeredItems)
+
   function acceptOffer(id) {
     updateOfferMutation.mutate({ id, offer: true });
-    setActive("onayla")
+    setActive(`onayla${id}`)
   }
 
   function rejectOffer(id) {
     updateOfferMutation.mutate({ id, offer: false });
-    setActive("reddet")
+    setActive(`reddet${id}`)
   }
 
   return (
     receivedOffersQuery.isLoading ? <SkeletonLoader style="detail" /> :
       <>
         {offeredItems?.length ? (
-          offeredItems?.map((offer) => {
-            return <div className={styles.card} key={offer.id}>
-              <div className={styles.left}>
-                <img
-                  src={`${API}${offer.image?.url}`}
-                  alt={offer.name}
-                />
-              </div>
-              <div className={styles.right}>
-                <div className={styles.info}>
-                  <p>{offer.name}</p>
-                  <span>
-                    Alınan Teklif:{" "}
-                    <span className={styles.price}>{formatPrice(offer.offers[0]?.offerPrice)} TL</span>
-                  </span>
-                </div>
-                <div className={styles.btns}>
-                  {offer.offers[0]?.isStatus === null ?
-                    <>
-                      <button className={styles.acceptBtn} onClick={() => acceptOffer(offer.offers[0]?.id)}> {updateOfferMutation.isLoading && active === "onayla" ? <LoadingIcon /> : "Onayla"}</button>
-                      <button className={styles.rejectBtn} onClick={() => rejectOffer(offer.offers[0]?.id)}>{updateOfferMutation.isLoading && active === "reddet" ? <LoadingIcon /> : "Reddet"}</button>
-                    </>
-                    : offer.offers[0]?.isStatus == true ?
-                      <p className={styles.accept}>Onaylandı</p>
-                      :
-                      <p className={styles.reject}>Reddedildi</p>
-                  }
+          offeredItems?.map((offer) => (
+            <div key={offer.id}>
+              {offer.offers?.map(item => {
+                return <div className={styles.card} key={item.id}>
+                  <div className={styles.left}>
+                    <img
+                      src={`${API}${offer.image?.url}`}
+                      alt={offer.name}
+                    />
+                  </div>
+                  <div className={styles.right}>
+                    <div className={styles.info}>
+                      <p>{offer.name}</p>
+                      <span>
+                        Alınan Teklif:{" "}
+                        <span className={styles.price}>{formatPrice(item?.offerPrice)} TL</span>
+                      </span>
+                    </div>
+                    <div className={styles.btns}>
+                      {item?.isStatus === null ?
+                        <>
+                          <button className={styles.acceptBtn} onClick={() => acceptOffer(item?.id)}> {updateOfferMutation.isLoading && active === `onayla${item.id}` ? <LoadingIcon /> : "Onayla"}</button>
+                          <button className={styles.rejectBtn} onClick={() => rejectOffer(item?.id)}>{updateOfferMutation.isLoading && active === `reddet${item.id}` ? <LoadingIcon /> : "Reddet"}</button>
+                        </>
+                        : item?.isStatus == true ?
+                          <p className={styles.accept}>Onaylandı</p>
+                          :
+                          <p className={styles.reject}>Reddedildi</p>
+                      }
 
 
-                  {/* {offer.product?.isSold ? (
+                      {/* {offer.product?.isSold ? (
                   <p className={styles.accept}>Onaylandı</p>
                 ) : (
                   <BuyProductModal product={offer.product} />
                 )} */}
+                    </div>
+                  </div>
+                  <ToastContainer
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    autoClose={false}
+                  />
                 </div>
-              </div>
-              <ToastContainer
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                autoClose={false}
-              />
+              })}
             </div>
-          }
+          )
           )
         ) : (
           <p className={styles.notFound}>Teklif Yoktur</p>
-        )}
+        )
+        }
       </>
   );
 }
