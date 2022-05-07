@@ -21,6 +21,8 @@ function ProductDetail() {
   const productQuery = useQuery(["getProduct", id], () =>
     Service.getProduct(id)
   );
+
+  console.log(productQuery);
   const { user } = useUser();
 
   const givenOffer = productQuery.data?.offers?.findLast(
@@ -32,11 +34,10 @@ function ProductDetail() {
       queryClient.invalidateQueries(["getProduct", id]);
     },
   });
-  
+
   function boughtToast() {
     toast.success("Satın Alındı")
   }
-
   return (
     <UserLayout>
       <ToastContainer

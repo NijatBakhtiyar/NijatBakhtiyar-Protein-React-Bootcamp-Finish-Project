@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-import GetOffer from "../components/GetOffer";
-import GiveOffer from "../components/GiveOffer";
+import GivenOffers from "../components/GivenOffers";
+import ReceivedOffers from "../components/ReceivedOffers";
 import UserLayout from "../components/UserLayout";
 import { useUser } from "../context/UserContext";
 import { Service } from "../data/service";
@@ -11,24 +11,22 @@ import UserIcon from "../images/Svg/UserIcon";
 import styles from "./Account.module.scss";
 
 function Account() {
-  const offerQuery = useQuery(["getOffers"], Service.getOffers);
-  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
+
   // const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
   const { user } = useUser();
   const navigate = useNavigate();
 
+  // const offerQuery = useQuery(["getOffers"], Service.getOffers);
   const queryClient = useQueryClient();
 
-  const receivedOffers = offerQuery.data?.filter(
-    (offer) => offer.product?.users_permissions_user === user?.id
-  );
-  const givenOffers = offerQuery.data?.filter(
-    (offer) => offer.users_permissions_user?.id === user?.id
-  );
+  const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
+
+  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
 
 
-  console.log(givenOffersQuery);
   const [active, setActive] = useState("getoffer");
+
+  // console.log(receivedOffersQuery);
 
   return (
     <UserLayout>
@@ -67,10 +65,10 @@ function Account() {
           <div className={styles.products}>
             {active === "getoffer" ? (
               <>
-                <GetOffer receivedOffers={receivedOffers} />
+                <ReceivedOffers receivedOffersQuery={receivedOffersQuery} />
               </>
             ) : (
-              <GiveOffer givenOffers={givenOffers} />
+              <GivenOffers givenOffersQuery={givenOffersQuery} />
             )}
           </div>
         </div>

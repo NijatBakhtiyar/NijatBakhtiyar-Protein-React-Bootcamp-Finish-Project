@@ -57,6 +57,7 @@ export const Service = {
       `${API}/offers`,
       {
         product: productId,
+        // isStatus: false,
         offerPrice,
         users_permissions_user: userId,
       },
@@ -97,7 +98,7 @@ export const Service = {
     const formdata = new FormData();
 
     formdata.append("files.image", image[0].file);
-    formdata.append("data", JSON.stringify({ ...form, isOfferable: true }));
+    formdata.append("data", JSON.stringify({ ...form, isOfferable: true, users_permissions_user: 454 }));
 
     const res = await axios.post(`${API}/products`, formdata, {
       headers: {
@@ -139,6 +140,30 @@ export const Service = {
   getReceivedOffers: async () => {
     const token = localStorage.getItem("token");
     const res = await axios.get(`${API}/products?users_permissions_user=454`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  },
+  updateOffers: async ({ id, offer }) => {
+    const token = localStorage.getItem("token");
+    const res = await axios.put(
+      `${API}/offers/${id}`,
+      {
+        isStatus: offer,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  },
+  deleteProduct: async () => {
+    const token = localStorage.getItem("token");
+    const res = await axios.delete(`${API}/products/762`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -20,7 +20,10 @@ function Home() {
   const productsQuery = useQuery(["getAllProducts", activeCategory], () =>
     Service.getAllProducts({ categoryName: activeCategory })
   );
+  useQuery(["deleteProduct"], () => Service.deleteProduct());
 
+
+  console.log(productsQuery.data)
   return (
     <UserLayout>
       <div className={styles.home}>
