@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -8,14 +8,11 @@ import { useUser } from "../context/UserContext";
 import { Service } from "../data/service";
 import styles from "./BuyProductModal.module.scss";
 
-function BuyProductModal({ product }) {
+function BuyProductModal({ product, onSuccess }) {
   const { user } = useUser();
-  const navigate = useNavigate()
-  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const productBuyMutation = useMutation(Service.buyProduct, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["getProduct", product?.id.toString()]);
-    },
+    onSuccess: onSuccess
   });
 
   const [show, setShow] = useState(false);

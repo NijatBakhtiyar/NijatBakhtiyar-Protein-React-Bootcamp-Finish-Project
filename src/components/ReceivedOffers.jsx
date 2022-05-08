@@ -18,8 +18,6 @@ function ReceivedOffers({ receivedOffersQuery }) {
     },
   });
 
-  console.log("aldiklarim", offeredItems)
-
   function acceptOffer(id) {
     updateOfferMutation.mutate({ id, offer: true });
     setActive(`onayla${id}`)

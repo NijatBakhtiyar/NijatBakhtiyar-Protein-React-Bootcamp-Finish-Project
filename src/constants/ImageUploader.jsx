@@ -25,11 +25,7 @@ function ImageUploader({ onChange }) {
       {({
         imageList,
         onImageUpload,
-        onImageRemoveAll,
-        onImageUpdate,
         onImageRemove,
-        isDragging,
-        dragProps
       }) => (
         // write your building UI
         <div className="upload__image-wrapper">
@@ -43,13 +39,14 @@ function ImageUploader({ onChange }) {
             <div key={index} className={styles.imageItem}>
               <img src={image.data_url} alt="" width="110" height="120" />
               <div className="image-item__btn-wrapper">
-                <button type="button" className={styles.removeImage} onClick={() => onImageRemove(index)}>x</button>
+                <button type="button" className={styles.removeImage} onClick={() => (onImageRemove(index), onChange(""))}>x</button>
               </div>
             </div>
           ))}
         </div>
-      )}
-    </ImageUploading>
+      )
+      }
+    </ImageUploading >
   );
 }
 

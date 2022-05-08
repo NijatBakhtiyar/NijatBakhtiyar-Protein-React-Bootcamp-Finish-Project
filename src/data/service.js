@@ -178,15 +178,15 @@ export const Service = {
 
 
 
-  deleteProduct: async () => {
-    const token = localStorage.getItem("token");
-    const res = await axios.delete(`${API}/products/843`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return res.data;
-  },
+    // deleteProduct: async () => {
+    //   const token = localStorage.getItem("token");
+    //   const res = await axios.delete(`${API}/products/960`, {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   });
+    //   return res.data;
+    // },
   // deleteOfferNew: async () => {
   //   const token = localStorage.getItem("token");
   //   await axios.delete(`${API}/offers/1713`, {

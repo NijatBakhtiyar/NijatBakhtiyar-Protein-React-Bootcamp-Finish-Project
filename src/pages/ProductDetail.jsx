@@ -22,7 +22,6 @@ function ProductDetail() {
     Service.getProduct(id)
   );
 
-  console.log(productQuery);
   const { user } = useUser();
 
   const givenOffer = productQuery.data?.offers?.findLast(
@@ -35,9 +34,9 @@ function ProductDetail() {
     },
   });
 
-  function boughtToast() {
-    toast.success("Satın Alındı")
-  }
+  // function boughtToast() {
+  //   toast.success("Satın Alındı")
+  // }
   return (
     <UserLayout>
       <ToastContainer
@@ -86,7 +85,9 @@ function ProductDetail() {
                   <p>Bu Ürün Satışta Değil</p>
                 ) : (
                   <>
-                    <BuyProductModal product={productQuery.data} boughtToast={boughtToast} />
+                    <BuyProductModal
+                      product={productQuery.data}
+                      onSuccess={() => queryClient.invalidateQueries(["getProduct", productQuery.data?.id?.toString()])} />
                     {
                       productQuery.data?.isOfferable && !givenOffer ?
                         <GiveOfferModal product={productQuery.data} /> :

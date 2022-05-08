@@ -167,11 +167,11 @@ function AddProduct() {
                         placeholder="Bir fiyat girin"
                         value={values.price || ""}
                         onChange={handleChange}
-                        disabled={isOfferable ? false : true}
+                        disabled={isOfferable ? false : true} 
                       />
                       <span className={styles.currency}>TL</span>
                       <span className={styles.errorMessage}>
-                        {touched.price && errors.price}
+                        {errors.price}
                       </span>
                     </div>
 

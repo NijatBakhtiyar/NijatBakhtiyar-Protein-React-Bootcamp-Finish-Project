@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { ToastContainer } from "react-toastify";
 
 import SkeletonLoader from "../constants/SkeletonLoader";
@@ -10,9 +10,10 @@ import BuyProductModal from "./BuyProductModal";
 
 function GivenOffers() {
   const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
-  const newOffers = givenOffersQuery.data?.filter(offer => offer.product)
-  console.log(givenOffersQuery);
-  // useQuery(["deleteOfferNew"], () => Service.deleteOfferNew)
+  const newOffers = givenOffersQuery.data?.filter(offer => offer.product);
+
+  const queryClient = useQueryClient();
+
   return (
     givenOffersQuery.isLoading ?
       <SkeletonLoader style="detail" /> :
@@ -47,7 +48,9 @@ function GivenOffers() {
                       offer.isStatus === null ? "" :
                         offer.isStatus === true ?
                           <>
-                            <BuyProductModal product={offer.product} />
+                            <BuyProductModal
+                              product={offer.product}
+                              onSuccess={() => queryClient.invalidateQueries(["getGivenOffers"])} />
                             <p className={styles.accept}>Onaylandı</p>
                           </> :
                           <p className={styles.reject}>Reddedildi</p>
