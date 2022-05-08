@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { ToastContainer } from "react-toastify";
 
 import SkeletonLoader from "../constants/SkeletonLoader";
+import { useUser } from "../context/UserContext";
 import { API, Service } from "../data/service";
 import LoadingIcon from "../images/Svg/LoadingIcon";
 import styles from "../pages/Account.module.scss";
 import { formatPrice } from "../utils/formatPrice";
 
-function ReceivedOffers({ receivedOffersQuery }) {
+function ReceivedOffers() {
   const [active, setActive] = useState("");
-  const offeredItems = receivedOffersQuery.data?.filter(offer => offer.offers.length);
+  const { user } = useUser();
   const queryClient = useQueryClient();
+  const receivedOffersQuery = useQuery(["getReceivedOffers"], () => Service.getReceivedOffers(user?.id));
+  const offeredItems = receivedOffersQuery?.data?.filter(offer => offer.offers.length);
   const updateOfferMutation = useMutation(Service.updateOffers, {
     onSuccess: () => {
       queryClient.invalidateQueries(["getReceivedOffers"]);

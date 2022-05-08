@@ -33,10 +33,7 @@ function ProductDetail() {
       queryClient.invalidateQueries(["getProduct", id]);
     },
   });
-
-  // function boughtToast() {
-  //   toast.success("Satın Alındı")
-  // }
+  
   return (
     <UserLayout>
       <ToastContainer

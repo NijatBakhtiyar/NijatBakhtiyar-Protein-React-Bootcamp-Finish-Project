@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
 import GivenOffers from "../components/GivenOffers";
 import ReceivedOffers from "../components/ReceivedOffers";
 import UserLayout from "../components/UserLayout";
 import { useUser } from "../context/UserContext";
-import { Service } from "../data/service";
 import UserIcon from "../images/Svg/UserIcon";
 import styles from "./Account.module.scss";
 
 function Account() {
   const [active, setActive] = useState("getoffer");
   const { user } = useUser();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
+  const navigate = useNavigate();
 
 
   return (
@@ -53,9 +50,9 @@ function Account() {
             </button>
           </div>
           <div className={styles.products}>
-            {active === "getoffer" ? (  
+            {active === "getoffer" ? (
               <>
-                <ReceivedOffers receivedOffersQuery={receivedOffersQuery} />
+                <ReceivedOffers />
               </>
             ) : (
               <GivenOffers />

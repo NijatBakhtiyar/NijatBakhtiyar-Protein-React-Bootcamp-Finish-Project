@@ -100,12 +100,12 @@ export const Service = {
     return res.data;
   },
 
-  addProduct: async ({ image, ...form }) => {
+  addProduct: async ({ image, userId, ...form }) => {
     const token = localStorage.getItem("token");
     const formdata = new FormData();
 
     formdata.append("files.image", image[0].file);
-    formdata.append("data", JSON.stringify({ ...form, isOfferable: true, users_permissions_user: 454 }));
+    formdata.append("data", JSON.stringify({ ...form, isOfferable: true, users_permissions_user: userId }));
 
     const res = await axios.post(`${API}/products`, formdata, {
       headers: {
@@ -140,9 +140,9 @@ export const Service = {
     return res.data;
   },
 
-  getGivenOffers: async () => {
+  getGivenOffers: async (userId) => {
     const token = localStorage.getItem("token");
-    const res = await axios.get(`${API}/offers/?users_permissions_user=454`, {
+    const res = await axios.get(`${API}/offers/?users_permissions_user=${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -150,9 +150,9 @@ export const Service = {
     return res.data;
   },
 
-  getReceivedOffers: async () => {
+  getReceivedOffers: async (userId) => {
     const token = localStorage.getItem("token");
-    const res = await axios.get(`${API}/products?users_permissions_user=454`, {
+    const res = await axios.get(`${API}/products?users_permissions_user=${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -175,28 +175,6 @@ export const Service = {
     );
     return res.data;
   },
-
-
-
-    // deleteProduct: async () => {
-    //   const token = localStorage.getItem("token");
-    //   const res = await axios.delete(`${API}/products/960`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   return res.data;
-    // },
-  // deleteOfferNew: async () => {
-  //   const token = localStorage.getItem("token");
-  //   await axios.delete(`${API}/offers/1713`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  // },
-
-
 
 };
 

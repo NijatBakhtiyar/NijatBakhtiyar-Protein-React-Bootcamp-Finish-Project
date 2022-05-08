@@ -3,14 +3,16 @@ import { useQuery, useQueryClient } from "react-query";
 import { ToastContainer } from "react-toastify";
 
 import SkeletonLoader from "../constants/SkeletonLoader";
+import { useUser } from "../context/UserContext";
 import { API, Service } from "../data/service";
 import NoImage from "../images/Png/NoImage.jpg";
 import styles from "../pages/Account.module.scss";
 import BuyProductModal from "./BuyProductModal";
 
 function GivenOffers() {
-  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
-  const newOffers = givenOffersQuery.data?.filter(offer => offer.product);
+  const { user } = useUser()
+  const givenOffersQuery = useQuery(["getGivenOffers"], () => Service.getGivenOffers(user?.id));
+  const newOffers = givenOffersQuery?.data?.filter(offer => offer.product);
 
   const queryClient = useQueryClient();
 

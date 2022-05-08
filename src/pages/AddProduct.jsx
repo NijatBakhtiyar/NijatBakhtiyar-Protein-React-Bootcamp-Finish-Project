@@ -8,12 +8,14 @@ import UserLayout from "../components/UserLayout";
 import { AddProductSchema } from "../constants/AddProductSchema";
 import ImageUploader from "../constants/ImageUploader";
 import inputStyle from "../constants/SwitchCheckBox.module.scss";
+import { useUser } from "../context/UserContext";
 import { Service, useCategories } from "../data/service";
 import LoadingIcon from "../images/Svg/LoadingIcon";
 import styles from "./AddProduct.module.scss";
 
 function AddProduct() {
   const navigate = useNavigate();
+  const { user } = useUser();
   const productFormMutation = useMutation(Service.addProduct, {
     onSuccess: (data) => {
       navigate(`/product/${data.id}`);
@@ -39,7 +41,7 @@ function AddProduct() {
             description: "",
           }}
           onSubmit={(values) => {
-            productFormMutation.mutate(values);
+            productFormMutation.mutate({ ...values, userId: user?.id });
           }}
           validationSchema={AddProductSchema}
         >
@@ -166,7 +168,7 @@ function AddProduct() {
                         placeholder="Bir fiyat girin"
                         value={values.price || ""}
                         onChange={handleChange}
-                        disabled={isOfferable ? false : true} 
+                        disabled={isOfferable ? false : true}
                       />
                       <span className={styles.currency}>TL</span>
                       <span className={styles.errorMessage}>
@@ -222,7 +224,7 @@ function AddProduct() {
           }}
         </Formik>
       </div>
-    </UserLayout>
+    </UserLayout >
   );
 }
 
