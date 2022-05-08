@@ -7,6 +7,7 @@ import { useUser } from "../context/UserContext";
 import { API, Service } from "../data/service";
 import NoImage from "../images/Png/NoImage.jpg";
 import styles from "../pages/Account.module.scss";
+import { formatPrice } from "../utils/formatPrice";
 import BuyProductModal from "./BuyProductModal";
 
 function GivenOffers() {
@@ -40,7 +41,7 @@ function GivenOffers() {
                   <p>{offer.product?.name}</p>
                   <span>
                     Verilen Teklif:{" "}
-                    <span className={styles.price}>{offer.offerPrice} TL</span>
+                    <span className={styles.price}>{formatPrice(offer?.offerPrice)} TL</span>
                   </span>
                 </div>
                 <div className={styles.btns}>

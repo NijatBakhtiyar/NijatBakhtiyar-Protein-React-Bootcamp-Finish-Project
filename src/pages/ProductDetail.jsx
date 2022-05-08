@@ -17,12 +17,11 @@ import styles from "./ProductDetail.module.scss";
 
 function ProductDetail() {
   const { id } = useParams();
+  const { user } = useUser();
   const queryClient = useQueryClient();
   const productQuery = useQuery(["getProduct", id], () =>
     Service.getProduct(id)
   );
-
-  const { user } = useUser();
 
   const givenOffer = productQuery.data?.offers?.findLast(
     (offer) => offer.users_permissions_user == user?.id
@@ -33,7 +32,7 @@ function ProductDetail() {
       queryClient.invalidateQueries(["getProduct", id]);
     },
   });
-  
+
   return (
     <UserLayout>
       <ToastContainer

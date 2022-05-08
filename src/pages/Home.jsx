@@ -20,7 +20,6 @@ function Home() {
   const productsQuery = useQuery(["getAllProducts", activeCategory], () =>
     Service.getAllProducts({ categoryName: activeCategory })
   );
-  // useQuery(["deleteProduct"], () => Service.deleteProduct());
 
   return (
     <UserLayout>
