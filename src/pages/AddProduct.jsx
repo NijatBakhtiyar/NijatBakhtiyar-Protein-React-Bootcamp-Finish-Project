@@ -51,7 +51,6 @@ function AddProduct() {
             touched,
             setFieldValue,
           }) => {
-            console.log(errors);
             return (
               <form onSubmit={handleSubmit}>
                 <div className={styles.row}>
