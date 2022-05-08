@@ -17,7 +17,7 @@ function Account() {
   const queryClient = useQueryClient();
 
   const receivedOffersQuery = useQuery(["getReceivedOffers"], Service.getReceivedOffers);
-  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
+
 
   return (
     <UserLayout>
@@ -53,12 +53,12 @@ function Account() {
             </button>
           </div>
           <div className={styles.products}>
-            {active === "getoffer" ? (
+            {active === "getoffer" ? (  
               <>
                 <ReceivedOffers receivedOffersQuery={receivedOffersQuery} />
               </>
             ) : (
-              <GivenOffers givenOffersQuery={givenOffersQuery} />
+              <GivenOffers />
             )}
           </div>
         </div>

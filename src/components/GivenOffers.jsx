@@ -8,60 +8,62 @@ import NoImage from "../images/Png/NoImage.jpg";
 import styles from "../pages/Account.module.scss";
 import BuyProductModal from "./BuyProductModal";
 
-function GivenOffers({ givenOffersQuery }) {
+function GivenOffers() {
+  const givenOffersQuery = useQuery(["getGivenOffers"], Service.getGivenOffers);
   const newOffers = givenOffersQuery.data?.filter(offer => offer.product)
-
+  console.log(givenOffersQuery);
   // useQuery(["deleteOfferNew"], () => Service.deleteOfferNew)
   return (
     givenOffersQuery.isLoading ?
       <SkeletonLoader style="detail" /> :
-      <>
-        {newOffers?.map((offer) => (
-          <div className={styles.card} key={offer.id}>
-            <ToastContainer
-              hideProgressBar
-              newestOnTop={false}
-              closeOnClick
-              autoClose={2000}
-            />
-            <div className={styles.left}>
-              <img
-                src={offer.product?.image?.url ? `${API}${offer.product.image.url}` : NoImage}
-                alt={offer.product?.name}
+      !newOffers?.length ? <p className={styles.noOfferText}>Henüz bir teklif verilmemiş</p> :
+        <>
+          {newOffers?.map((offer) => (
+            <div className={styles.card} key={offer.id}>
+              <ToastContainer
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                autoClose={2000}
               />
-            </div>
-            <div className={styles.right}>
-              <div className={styles.info}>
-                <p>{offer.product?.name}</p>
-                <span>
-                  Verilen Teklif:{" "}
-                  <span className={styles.price}>{offer.offerPrice} TL</span>
-                </span>
+              <div className={styles.left}>
+                <img
+                  src={offer.product?.image?.url ? `${API}${offer.product.image.url}` : NoImage}
+                  alt={offer.product?.name}
+                />
               </div>
-              <div className={styles.btns}>
-                {
-                  offer.product?.isSold ?
-                    <p className={styles.bought}>Satın Alındı</p> :
-                    offer.isStatus === null ? "" :
-                      offer.isStatus === true ?
-                        <>
-                          <BuyProductModal product={offer.product} />
-                          <p className={styles.accept}>Onaylandı</p>
-                        </> :
-                        <p className={styles.reject}>Reddedildi</p>
-                }
+              <div className={styles.right}>
+                <div className={styles.info}>
+                  <p>{offer.product?.name}</p>
+                  <span>
+                    Verilen Teklif:{" "}
+                    <span className={styles.price}>{offer.offerPrice} TL</span>
+                  </span>
+                </div>
+                <div className={styles.btns}>
+                  {
+                    offer.product?.isSold ?
+                      <p className={styles.bought}>Satın Alındı</p> :
+                      offer.isStatus === null ? "" :
+                        offer.isStatus === true ?
+                          <>
+                            <BuyProductModal product={offer.product} />
+                            <p className={styles.accept}>Onaylandı</p>
+                          </> :
+                          <p className={styles.reject}>Reddedildi</p>
+                  }
 
-                {/* {offer.product?.isSold ? (
+                  {/* {offer.product?.isSold ? (
                 <p className={styles.accept}>Onaylandı</p>
               ) : (
                 <BuyProductModal product={offer.product} />
               )} */}
+                </div>
               </div>
-            </div>
 
-          </div>
-        ))}
-      </>
+            </div>
+          ))}
+        </>
   )
 }
 

@@ -63,13 +63,6 @@ function ReceivedOffers({ receivedOffersQuery }) {
                           :
                           <p className={styles.reject}>Reddedildi</p>
                       }
-
-
-                      {/* {offer.product?.isSold ? (
-                  <p className={styles.accept}>Onaylandı</p>
-                ) : (
-                  <BuyProductModal product={offer.product} />
-                )} */}
                     </div>
                   </div>
                   <ToastContainer
@@ -84,7 +77,7 @@ function ReceivedOffers({ receivedOffersQuery }) {
           )
           )
         ) : (
-          <p className={styles.notFound}>Teklif Yoktur</p>
+          <p className={styles.noOfferText}>Henüz bir teklif alınmamış</p>
         )
         }
       </>

@@ -37,7 +37,6 @@ function AddProduct() {
           initialValues={{
             name: "",
             description: "",
-            price: 0,
           }}
           onSubmit={(values) => {
             productFormMutation.mutate(values);
@@ -193,7 +192,7 @@ function AddProduct() {
                         ></span>
                       </label>
                     </div>
-                    
+
                   </div>
                   <div className={styles.line}></div>
                   <div className={styles.right}>
