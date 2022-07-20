@@ -21,6 +21,8 @@ function Home() {
     Service.getAllProducts({ categoryName: activeCategory })
   );
 
+  console.log(productsQuery);
+
   return (
     <UserLayout>
       <div className={styles.home}>
@@ -46,7 +48,9 @@ function Home() {
                   >
                     <div className={styles.image}>
                       <img
-                        src={product.image ? `${API}${product.image.url}` : NoImage}
+                        src={
+                          product.image ? `${API}${product.image.url}` : NoImage
+                        }
                         alt={product.name}
                       />
                     </div>
@@ -59,9 +63,9 @@ function Home() {
                         </span>
                       </span>
                     </p>
-                    <span
-                      className={styles.price}
-                    >{`${formatPrice(product.price)} TL`}</span>
+                    <span className={styles.price}>{`${formatPrice(
+                      product.price
+                    )} TL`}</span>
                   </Link>
                 );
               })}

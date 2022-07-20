@@ -14,7 +14,7 @@ npm start
 npm run test
 ```
 
-## 🔗 [**Live Demo**](https://protein-react-bootcamp-finish.netlify.app/)
+## 🔗 [**Live Demo**](https://second-hand-project.netlify.app/)
 
 ## Used technologies:
 

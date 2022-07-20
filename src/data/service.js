@@ -105,7 +105,14 @@ export const Service = {
     const formdata = new FormData();
 
     formdata.append("files.image", image[0].file);
-    formdata.append("data", JSON.stringify({ ...form, isOfferable: true, users_permissions_user: userId }));
+    formdata.append(
+      "data",
+      JSON.stringify({
+        ...form,
+        isOfferable: true,
+        users_permissions_user: userId,
+      })
+    );
 
     const res = await axios.post(`${API}/products`, formdata, {
       headers: {
@@ -142,21 +149,27 @@ export const Service = {
 
   getGivenOffers: async (userId) => {
     const token = localStorage.getItem("token");
-    const res = await axios.get(`${API}/offers/?users_permissions_user=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      `${API}/offers/?users_permissions_user=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   },
 
   getReceivedOffers: async (userId) => {
     const token = localStorage.getItem("token");
-    const res = await axios.get(`${API}/products?users_permissions_user=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.get(
+      `${API}/products?users_permissions_user=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   },
 
@@ -175,7 +188,6 @@ export const Service = {
     );
     return res.data;
   },
-
 };
 
 export function useCategories() {
