@@ -19,8 +19,8 @@ function Login() {
       navigate("/");
     },
     onError: () => {
-      toast.error("Emailinizi veya şifreniz hatalı.")
-    }
+      toast.error("Emailinizi veya şifreniz hatalı.");
+    },
   });
 
   return (
@@ -32,7 +32,7 @@ function Login() {
         }}
         onSubmit={(form, { resetForm }) => {
           loginMutation.mutate(form);
-          resetForm()
+          resetForm();
         }}
         validationSchema={AuthSchema}
       >
@@ -65,6 +65,7 @@ function Login() {
                   name="email"
                   value={values.email}
                   onChange={handleChange}
+                  autoComplete="off"
                 />
                 {/* <span className={styles.errorMessage}>{touched.email && errors.email}</span> */}
               </div>
@@ -83,6 +84,7 @@ function Login() {
                   name="password"
                   value={values.password}
                   onChange={handleChange}
+                  autoComplete="off"
                 />
                 {/* <span className={styles.formError}>{touched.password && errors.password}</span> */}
                 <p className={styles.forgotPassword}>Şifreni Unuttum</p>
